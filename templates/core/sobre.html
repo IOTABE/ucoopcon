@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Sobre - UCOOPCON{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Início</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Sobre</li>
+                </ol>
+            </nav>
+            
+            <h1 class="display-4 fw-bold mb-4">Sobre a UCOOPCON</h1>
+            
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <h3>Nossa História</h3>
+                    <p>A UCOOPCON foi fundada com o objetivo de promover o desenvolvimento econômico e social de seus cooperados através da união de esforços e recursos.</p>
+                    <p>Desde nossa criação, trabalhamos com os princípios do cooperativismo, promovendo a solidariedade, transparência e gestão democrática.</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Nossa Missão</h3>
+                    <p>Promover o desenvolvimento sustentável e o crescimento econômico dos cooperados através de serviços de qualidade e gestão transparente.</p>
+                    
+                    <h3>Nossa Visão</h3>
+                    <p>Ser referência em cooperativismo, contribuindo para o desenvolvimento da comunidade e bem-estar dos cooperados.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <h3>Nossos Valores</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-heart text-primary fs-1 mb-3"></i>
+                                    <h5>Solidariedade</h5>
+                                    <p>Apoio mútuo entre os cooperados</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-eye text-primary fs-1 mb-3"></i>
+                                    <h5>Transparência</h5>
+                                    <p>Gestão aberta e clara</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-people text-primary fs-1 mb-3"></i>
+                                    <h5>Democracia</h5>
+                                    <p>Participação de todos nas decisões</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

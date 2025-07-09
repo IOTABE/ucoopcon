@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{% if form.instance.pk %}Editar Evento{% else %}Novo Evento{% endif %} - UCOOPCON
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Início</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'events:list' %}">Eventos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                {% if form.instance.pk %}Editar{% else %}Novo{% endif %} Evento
+            </li>
+        </ol>
+    </nav>
+    
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="card bg-white">
+                <div class="card-header">
+                    <h3 class="card-title mb-0 text-primary-green">
+                        {% if form.instance.pk %}
+                            <i class="bi bi-pencil me-2"></i>Editar Evento
+                        {% else %}
+                            <i class="bi bi-plus-circle me-2"></i>Novo Evento
+                        {% endif %}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-8">
+                                {{ form.titulo|as_crispy_field }}
+                                {{ form.slug|as_crispy_field }}
+                                {{ form.descricao|as_crispy_field }}
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{ form.data_inicio|as_crispy_field }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form.data_fim|as_crispy_field }}
+                                    </div>
+                                </div>
+                                
+                                {{ form.local|as_crispy_field }}
+                                {{ form.endereco|as_crispy_field }}
+                            </div>
+                            
+                            <div class="col-md-4">
+                                {{ form.tipo|as_crispy_field }}
+                                {{ form.status|as_crispy_field }}
+                                {{ form.organizador|as_crispy_field }}
+                                
+                                <div class="form-check mb-3">
+                                    {{ form.inscricao_obrigatoria }}
+                                    <label class="form-check-label" for="{{ form.inscricao_obrigatoria.id_for_label }}">
+                                        Inscrição obrigatória
+                                    </label>
+                                </div>
+                                
+                                {{ form.capacidade_maxima|as_crispy_field }}
+                                {{ form.imagem|as_crispy_field }}
+                                
+                                {% if form.instance.imagem %}
+                                <div class="mb-3">
+                                    <label class="form-label">Imagem Atual:</label>
+                                    <div>
+                                        <img src="{{ form.instance.imagem.url }}" 
+                                             class="img-thumbnail" 
+                                             style="max-width: 200px; max-height: 150px;">
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'events:list' %}" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left me-2"></i>Cancelar
+                            </a>
+                            <div>
+                                <button type="submit" name="action" value="draft" class="btn btn-outline-success">
+                                    <i class="bi bi-file-earmark me-2"></i>Salvar como Rascunho
+                                </button>
+                                <button type="submit" name="action" value="schedule" class="btn btn-success-custom">
+                                    <i class="bi bi-check-circle me-2"></i>
+                                    {% if form.instance.pk %}Atualizar{% else %}Agendar{% endif %} Evento
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Auto-gerar slug baseado no título
+document.getElementById('id_titulo').addEventListener('input', function() {
+    const titulo = this.value;
+    const slug = titulo.toLowerCase()
+        .replace(/[^a-z0-9 ]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    document.getElementById('id_slug').value = slug;
+});
+
+// Preview da imagem
+document.getElementById('id_imagem').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const existingPreview = document.getElementById('image-preview');
+            if (existingPreview) {
+                existingPreview.remove();
+            }
+            
+            const preview = document.createElement('div');
+            preview.id = 'image-preview';
+            preview.className = 'mt-2';
+            preview.innerHTML = `
+                <label class="form-label">Preview:</label>
+                <div>
+                    <img src="${e.target.result}" class="img-thumbnail" style="max-width: 200px; max-height: 150px;">
+                </div>
+            `;
+            
+            e.target.parentNode.appendChild(preview);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Validação de datas
+document.getElementById('id_data_inicio').addEventListener('change', validateDates);
+document.getElementById('id_data_fim').addEventListener('change', validateDates);
+
+function validateDates() {
+    const dataInicio = document.getElementById('id_data_inicio').value;
+    const dataFim = document.getElementById('id_data_fim').value;
+    
+    if (dataInicio && dataFim && new Date(dataInicio) >= new Date(dataFim)) {
+        alert('A data de fim deve ser posterior à data de início.');
+        document.getElementById('id_data_fim').value = '';
+    }
+}
+</script>
+{% endblock %}

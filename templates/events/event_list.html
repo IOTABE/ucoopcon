@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Eventos - UCOOPCON{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Início</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Eventos</li>
+        </ol>
+    </nav>
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-4 fw-bold text-white">Eventos</h1>
+        {% if user.is_staff %}
+            <a href="{% url 'events:create' %}" class="btn btn-success-custom">
+                <i class="bi bi-plus-circle me-2"></i>Novo Evento
+            </a>
+        {% endif %}
+    </div>
+    
+    <!-- Filtros por tipo e status -->
+    <div class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{% url 'events:list' %}" class="btn btn-outline-light btn-sm">Todos</a>
+                    <a href="{% url 'events:list' %}?tipo=assembleia" class="btn btn-outline-light btn-sm">Assembleias</a>
+                    <a href="{% url 'events:list' %}?tipo=reuniao" class="btn btn-outline-light btn-sm">Reuniões</a>
+                    <a href="{% url 'events:list' %}?tipo=curso" class="btn btn-outline-light btn-sm">Cursos</a>
+                    <a href="{% url 'events:list' %}?tipo=palestra" class="btn btn-outline-light btn-sm">Palestras</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex flex-wrap gap-2 justify-content-md-end">
+                    <a href="{% url 'events:list' %}?status=agendado" class="btn btn-outline-success btn-sm">Agendados</a>
+                    <a href="{% url 'events:list' %}?status=andamento" class="btn btn-outline-warning btn-sm">Em Andamento</a>
+                    <a href="{% url 'events:list' %}?status=finalizado" class="btn btn-outline-secondary btn-sm">Finalizados</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lista de eventos -->
+    {% if evento_list %}
+        <div class="row">
+            {% for evento in evento_list %}
+            <div class="col-lg-6 col-xl-4 mb-4">
+                <div class="card event-card card-green h-100 bg-white">
+                    {% if evento.imagem %}
+                    <img src="{{ evento.imagem.url }}" 
+                         class="card-img-top" 
+                         alt="{{ evento.titulo }}" 
+                         style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="bi bi-calendar-event text-muted" style="font-size: 3rem;"></i>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge badge-green">{{ evento.get_tipo_display }}</span>
+                            {% if evento.status == 'agendado' %}
+                                <span class="badge bg-success">{{ evento.get_status_display }}</span>
+                            {% elif evento.status == 'andamento' %}
+                                <span class="badge bg-warning">{{ evento.get_status_display }}</span>
+                            {% elif evento.status == 'finalizado' %}
+                                <span class="badge bg-secondary">{{ evento.get_status_display }}</span>
+                            {% else %}
+                                <span class="badge bg-danger">{{ evento.get_status_display }}</span>
+                            {% endif %}
+                        </div>
+                        
+                        <h5 class="card-title text-primary-green">{{ evento.titulo }}</h5>
+                        <p class="card-text flex-grow-1">{{ evento.descricao|truncatewords:20 }}</p>
+                        
+                        <div class="mt-auto">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-calendar me-2 text-primary-green"></i>
+                                <small class="text-muted">{{ evento.data_inicio|date:"d/m/Y H:i" }}</small>
+                            </div>
+                            
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-geo-alt me-2 text-primary-green"></i>
+                                <small class="text-muted">{{ evento.local|truncatechars:30 }}</small>
+                            </div>
+                            
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-person me-2 text-primary-green"></i>
+                                <small class="text-muted">{{ evento.organizador.get_full_name|default:evento.organizador.username }}</small>
+                            </div>
+                            
+                            {% if evento.inscricao_obrigatoria and evento.capacidade_maxima %}
+                            <div class="mb-2">
+                                <small class="text-muted">
+                                    Vagas: {{ evento.vagas_disponivel|default:"Ilimitadas" }}
+                                    {% if evento.capacidade_maxima %} / {{ evento.capacidade_maxima }}{% endif %}
+                                </small>
+                            </div>
+                            {% endif %}
+                            
+                            <div class="d-flex gap-2">
+                                <a href="{{ evento.get_absolute_url }}" class="btn btn-success-custom btn-sm flex-grow-1">Ver Detalhes</a>
+                                {% if user.is_staff %}
+                                    <a href="{% url 'events:update' evento.pk %}" class="btn btn-outline-secondary btn-sm">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Paginação -->
+        {% if is_paginated %}
+        <nav aria-label="Paginação de eventos">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">Primeira</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                    </li>
+                {% endif %}
+                
+                <li class="page-item active">
+                    <span class="page-link">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+                </li>
+                
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-calendar-event text-white" style="font-size: 4rem;"></i>
+            <h3 class="mt-3 text-white">Nenhum evento encontrado</h3>
+            <p class="text-light">Ainda não há eventos cadastrados.</p>
+            {% if user.is_staff %}
+                <a href="{% url 'events:create' %}" class="btn btn-success-custom">Criar primeiro evento</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

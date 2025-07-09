@@ -1,0 +1,170 @@
+/ctic/Development/ucoopcon/static/css/style.css */
+:root {
+    --primary-color: #28a745;
+    --primary-dark: #1e7e34;
+    --primary-light: #5cb85c;
+    --navbar-bg: #5cb85c;
+    --footer-bg: #5cb85c;
+    --hero-bg: #1e7e34;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: var(--hero-bg);
+    color: white;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--hero-bg));
+    color: white;
+    padding: 4rem 0;
+}
+
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.news-card {
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.news-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.event-card {
+    border-left: 4px solid var(--primary-color);
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.stats-card {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-radius: 15px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Navbar com fundo verde claro */
+.navbar-custom {
+    background-color: var(--navbar-bg) !important;
+}
+
+/* Footer com fundo verde claro */
+.footer-custom {
+    background-color: var(--footer-bg) !important;
+}
+
+/* Seções com fundo verde escuro */
+.bg-dark-green {
+    background-color: var(--hero-bg) !important;
+    color: white;
+}
+
+/* Seções com fundo verde claro para contraste */
+.bg-light-green {
+    background-color: #f8fff8 !important;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.breadcrumb {
+    background-color: #f8f9fa;
+    border-radius: 0.375rem;
+}
+
+/* Links na navbar */
+.navbar-custom .navbar-nav .nav-link {
+    color: white !important;
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+    color: var(--hero-bg) !important;
+}
+
+.navbar-custom .navbar-brand {
+    color: white !important;
+}
+
+/* Links no footer */
+.footer-custom a {
+    color: white !important;
+}
+
+.footer-custom a:hover {
+    color: var(--hero-bg) !important;
+}
+
+/* Botões com tema verde */
+.btn-success-custom {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.btn-success-custom:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: white;
+}
+
+/* Cards com bordas verdes */
+.card-green {
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Textos com cor primária verde */
+.text-primary-green {
+    color: var(--primary-color) !important;
+}
+
+/* Badges verdes */
+.badge-green {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Alertas verdes */
+.alert-success-custom {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-color: var(--primary-color);
+    color: var(--primary-dark);
+}

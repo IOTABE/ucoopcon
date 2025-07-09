@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ evento.titulo }} - UCOOPCON{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Início</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'events:list' %}">Eventos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ evento.titulo|truncatechars:50 }}</li>
+        </ol>
+    </nav>
+    
+    <article class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card bg-white">
+                <div class="card-body">
+                    <!-- Cabeçalho do evento -->
+                    <header class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <span class="badge badge-green fs-6 me-2">{{ evento.get_tipo_display }}</span>
+                                {% if evento.status == 'agendado' %}
+                                    <span class="badge bg-success">{{ evento.get_status_display }}</span>
+                                {% elif evento.status == 'andamento' %}
+                                    <span class="badge bg-warning">{{ evento.get_status_display }}</span>
+                                {% elif evento.status == 'finalizado' %}
+                                    <span class="badge bg-secondary">{{ evento.get_status_display }}</span>
+                                {% else %}
+                                    <span class="badge bg-danger">{{ evento.get_status_display }}</span>
+                                {% endif %}
+                            </div>
+                            
+                            {% if user.is_staff %}
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'events:update' evento.pk %}">
+                                        <i class="bi bi-pencil me-2"></i>Editar
+                                    </a></li>
+                                    <li><a class="dropdown-item text-danger" href="{% url 'events:delete' evento.pk %}">
+                                        <i class="bi bi-trash me-2"></i>Excluir
+                                    </a></li>
+                                </ul>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <h1 class="display-5 fw-bold mb-3 text-primary-green">{{ evento.titulo }}</h1>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-calendar me-2 text-primary-green"></i>
+                                    <div>
+                                        <strong>Início:</strong> {{ evento.data_inicio|date:"d 'de' F 'de' Y 'às' H:i" }}
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-calendar-check me-2 text-primary-green"></i>
+                                    <div>
+                                        <strong>Fim:</strong> {{ evento.data_fim|date:"d 'de' F 'de' Y 'às' H:i" }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-geo-alt me-2 text-primary-green"></i>
+                                    <div>
+                                        <strong>Local:</strong> {{ evento.local }}
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-person me-2 text-primary-green"></i>
+                                    <div>
+                                        <strong>Organizador:</strong> {{ evento.organizador.get_full_name|default:evento.organizador.username }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    
+                    <!-- Imagem do evento -->
+                    {% if evento.imagem %}
+                    <div class="mb-4">
+                        <img src="{{ evento.imagem.url }}" 
+                             class="img-fluid rounded" 
+                             alt="{{ evento.titulo }}"
+                             style="width: 100%; max-height: 400px; object-fit: cover;">
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Descrição do evento -->
+                    <div class="content mb-4">
+                        <h3 class="text-primary-green mb-3">Descrição</h3>
+                        {{ evento.descricao|linebreaks }}
+                    </div>
+                    
+                    <!-- Endereço completo -->
+                    {% if evento.endereco %}
+                    <div class="mb-4">
+                        <h5 class="text-primary-green mb-2">Endereço Completo</h5>
+                        <p class="text-muted">{{ evento.endereco|linebreaks }}</p>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Informações sobre inscrições -->
+                    {% if evento.inscricao_obrigatoria %}
+                    <div class="alert alert-success-custom mb-4">
+                        <h5 class="alert-heading">
+                            <i class="bi bi-info-circle me-2"></i>Inscrição Obrigatória
+                        </h5>
+                        {% if evento.capacidade_maxima %}
+                        <p class="mb-2">
+                            <strong>Capacidade:</strong> {{ evento.capacidade_maxima }} pessoas
+                        </p>
+                        <p class="mb-0">
+                            <strong>Vagas disponíveis:</strong> 
+                            {% if evento.vagas_disponivel %}
+                                {{ evento.vagas_disponivel }}
+                            {% else %}
+                                Esgotadas
+                            {% endif %}
+                        </p>
+                        {% endif %}
+                        
+                        {% if evento.status == 'agendado' and evento.vagas_disponivel %}
+                        <div class="mt-3">
+                            <button class="btn btn-success-custom" onclick="inscreverEvento()">
+                                <i class="bi bi-person-plus me-2"></i>Inscrever-se
+                            </button>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Informações adicionais -->
+                    <footer class="border-top pt-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <small class="text-muted">
+                                    <strong>Criado em:</strong> {{ evento.data_criacao|date:"d/m/Y H:i" }}<br>
+                                    {% if evento.data_atualizacao != evento.data_criacao %}
+                                    <strong>Atualizado em:</strong> {{ evento.data_atualizacao|date:"d/m/Y H:i" }}
+                                    {% endif %}
+                                </small>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <div class="d-flex justify-content-md-end gap-2">
+                                    <button class="btn btn-outline-primary btn-sm" onclick="compartilharEvento()">
+                                        <i class="bi bi-share me-1"></i>Compartilhar
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm" onclick="window.print()">
+                                        <i class="bi bi-printer me-1"></i>Imprimir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+
+<script>
+function compartilharEvento() {
+    if (navigator.share) {
+        navigator.share({
+            title: '{{ evento.titulo }}',
+            text: 'Evento: {{ evento.titulo }} - {{ evento.data_inicio|date:"d/m/Y H:i" }}',
+            url: window.location.href
+        });
+    } else {
+        navigator.clipboard.writeText(window.location.href).then(function() {
+            alert('Link copiado para a área de transferência!');
+        });
+    }
+}
+
+function inscreverEvento() {
+    // Aqui você pode implementar a lógica de inscrição
+    alert('Funcionalidade de inscrição em desenvolvimento. Entre em contato com o organizador.');
+}
+</script>
+{% endblock %}

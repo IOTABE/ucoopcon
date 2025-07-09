@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Notícia - UCOOPCON{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Início</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'news:list' %}">Notícias</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Excluir</li>
+        </ol>
+    </nav>
+    
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="card-title mb-0">
+                        <i class="bi bi-exclamation-triangle me-2"></i>Confirmar Exclusão
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <p class="mb-4">Tem certeza que deseja excluir a notícia abaixo?</p>
+                    
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ noticia.titulo }}</h5>
+                            <p class="card-text">{{ noticia.resumo }}</p>
+                            <small class="text-muted">
+                                Publicado em {{ noticia.data_publicacao|date:"d/m/Y" }} por {{ noticia.autor.get_full_name|default:noticia.autor.username }}
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+                        <strong>Atenção:</strong> Esta ação não pode ser desfeita. A notícia será permanentemente removida do sistema.
+                    </div>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ noticia.get_absolute_url }}" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left me-2"></i>Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash me-2"></i>Confirmar Exclusão
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

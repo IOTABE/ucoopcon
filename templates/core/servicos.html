@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block title %}Serviços - UCOOPCON{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Início</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Serviços</li>
+        </ol>
+    </nav>
+    
+    <h1 class="display-4 fw-bold mb-5 text-center">Nossos Serviços</h1>
+    
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-cash-coin text-primary fs-1 mb-3"></i>
+                    <h4>Gestão Financeira</h4>
+                    <p>Administração transparente dos recursos da cooperativa com relatórios periódicos e prestação de contas.</p>
+                    <ul class="list-unstyled">
+                        <li>✓ Controle de contribuições</li>
+                        <li>✓ Relatórios mensais</li>
+                        <li>✓ Auditoria externa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-book text-primary fs-1 mb-3"></i>
+                    <h4>Capacitação</h4>
+                    <p>Cursos e treinamentos para o desenvolvimento pessoal e profissional dos cooperados.</p>
+                    <ul class="list-unstyled">
+                        <li>✓ Cursos técnicos</li>
+                        <li>✓ Workshops</li>
+                        <li>✓ Palestras motivacionais</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-people text-primary fs-1 mb-3"></i>
+                    <h4>Networking</h4>
+                    <p>Promoção de conexões entre cooperados para oportunidades de negócios e parcerias.</p>
+                    <ul class="list-unstyled">
+                        <li>✓ Eventos de networking</li>
+                        <li>✓ Fóruns de discussão</li>
+                        <li>✓ Parcerias comerciais</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-shield-check text-primary fs-1 mb-3"></i>
+                    <h4>Assessoria Jurídica</h4>
+                    <p>Suporte jurídico especializado para questões relacionadas ao cooperativismo.</p>
+                    <ul class="list-unstyled">
+                        <li>✓ Consultoria jurídica</li>
+                        <li>✓ Contratos</li>
+                        <li>✓ Documentação</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-graph-up text-primary fs-1 mb-3"></i>
+                    <h4>Consultoria Empresarial</h4>
+                    <p>Orientação para crescimento de negócios e desenvolvimento de projetos.</p>
+                    <ul class="list-unstyled">
+                        <li>✓ Planos de negócio</li>
+                        <li>✓ Análise de mercado</li>
+                        <li>✓ Estratégias de crescimento</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-heart text-primary fs-1 mb-3"></i>
+                    <h4>Benefícios Sociais</h4>
+                    <p>Programas de bem-estar e apoio social para cooperados e famílias.</p>
+                    <ul class="list-unstyled">
+                        <li>✓ Programas de saúde</li>
+                        <li>✓ Atividades recreativas</li>
+                        <li>✓ Apoio emergencial</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Seção de Como Funciona -->
+    <section class="mt-5 pt-5 border-top">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="mb-4">Como Funciona</h2>
+                <p class="lead mb-5">Entenda como nossos serviços beneficiam os cooperados</p>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="position-relative">
+                            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <span class="fw-bold fs-4">1</span>
+                            </div>
+                            <h5>Adesão</h5>
+                            <p>Torne-se membro da cooperativa e tenha acesso a todos os serviços.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="position-relative">
+                            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <span class="fw-bold fs-4">2</span>
+                            </div>
+                            <h5>Participação</h5>
+                            <p>Participe ativamente das decisões e atividades da cooperativa.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="position-relative">
+                            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <span class="fw-bold fs-4">3</span>
+                            </div>
+                            <h5>Benefícios</h5>
+                            <p>Aproveite todos os serviços e benefícios disponíveis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção de Contato -->
+    <section class="mt-5 pt-5 bg-light rounded p-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h3>Interessado em nossos serviços?</h3>
+                <p class="mb-0">Entre em contato conosco para saber mais sobre como se tornar um cooperado e acessar todos os benefícios.</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="{% url 'core:contato' %}" class="btn btn-primary btn-lg">
+                    <i class="bi bi-telephone me-2"></i>Entre em Contato
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

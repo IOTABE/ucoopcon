@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}UCOOPCON - Cooperativa de Desenvolvimento{% endblock %}
+
+{% block content %}
+<!-- Hero Section com fundo verde escuro -->
+<section class="hero-section bg-dark-green">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">UCOOPCON</h1>
+                <p class="lead mb-4">Cooperativa de desenvolvimento e crescimento mútuo. Juntos construímos um futuro próspero e sustentável para todos os nossos cooperados.</p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'core:sobre' %}" class="btn btn-light btn-lg">Saiba Mais</a>
+                    <a href="{% url 'core:contato' %}" class="btn btn-outline-light btn-lg">Contato</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <i class="bi bi-people-fill text-white" style="font-size: 12rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Estatísticas com fundo verde claro -->
+<section class="py-5 bg-light-green">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="stats-card text-center p-4">
+                    <i class="bi bi-people fs-1 mb-3"></i>
+                    <h3 class="fw-bold">{{ total_membros|default:"0" }}</h3>
+                    <p class="mb-0">Membros Ativos</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stats-card text-center p-4">
+                    <i class="bi bi-calendar-event fs-1 mb-3"></i>
+                    <h3 class="fw-bold">{{ total_eventos|default:"0" }}</h3>
+                    <p class="mb-0">Eventos Realizados</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stats-card text-center p-4">
+                    <i class="bi bi-newspaper fs-1 mb-3"></i>
+                    <h3 class="fw-bold">{{ total_noticias|default:"0" }}</h3>
+                    <p class="mb-0">Notícias Publicadas</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stats-card text-center p-4">
+                    <i class="bi bi-cash-coin fs-1 mb-3"></i>
+                    <h3 class="fw-bold">R$ {{ total_contribuicoes|default:"0" }}</h3>
+                    <p class="mb-0">em Contribuições</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Notícias em Destaque com fundo verde escuro -->
+{% if noticias_destaque %}
+<section class="py-5 bg-dark-green">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold text-white">Notícias em Destaque</h2>
+                <p class="lead text-light">Acompanhe as últimas novidades da nossa cooperativa</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for noticia in noticias_destaque %}
+            <div class="col-lg-4 mb-4">
+                <div class="card news-card card-hover h-100">
+                    {% if noticia.imagem_destaque %}
+                    <img src="{{ noticia.imagem_destaque.url }}" class="card-img-top" alt="{{ noticia.titulo }}" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            {% if noticia.categoria %}
+                            <span class="badge badge-green">{{ noticia.categoria.nome }}</span>
+                            {% endif %}
+                            <small class="text-muted">{{ noticia.data_publicacao|date:"d/m/Y" }}</small>
+                        </div>
+                        <h5 class="card-title text-primary-green">{{ noticia.titulo }}</h5>
+                        <p class="card-text">{{ noticia.resumo }}</p>
+                        <div class="mt-auto">
+                            <a href="{{ noticia.get_absolute_url }}" class="btn btn-success-custom">Leia Mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'news:list' %}" class="btn btn-outline-light btn-lg">Ver Todas as Notícias</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Próximos Eventos com fundo verde claro -->
+{% if proximos_eventos %}
+<section class="py-5 bg-light-green">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold text-primary-green">Próximos Eventos</h2>
+                <p class="lead text-muted">Participe dos nossos eventos e atividades</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for evento in proximos_eventos %}
+            <div class="col-lg-4 mb-4">
+                <div class="card event-card card-green h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-green">{{ evento.get_tipo_display }}</span>
+                            <small class="text-muted">{{ evento.data_inicio|date:"d/m" }}</small>
+                        </div>
+                        <h5 class="card-title text-primary-green">{{ evento.titulo }}</h5>
+                        <p class="card-text">{{ evento.descricao|truncatewords:20 }}</p>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-calendar me-2 text-primary-green"></i>
+                            <small>{{ evento.data_inicio|date:"d/m/Y H:i" }}</small>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-geo-alt me-2 text-primary-green"></i>
+                            <small>{{ evento.local }}</small>
+                        </div>
+                        <a href="{{ evento.get_absolute_url }}" class="btn btn-success-custom">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'events:list' %}" class="btn btn-success-custom btn-lg">Ver Todos os Eventos</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Seção de Serviços com fundo verde escuro -->
+<section class="py-5 bg-dark-green">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold text-white">Nossos Serviços</h2>
+                <p class="lead text-light">Conheça os benefícios de ser um cooperado</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="bi bi-shield-check fs-1"></i>
+                    </div>
+                    <h4 class="text-white">Segurança Financeira</h4>
+                    <p class="text-light">Gestão transparente e segura dos recursos da cooperativa com total controle e prestação de contas.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="bi bi-people fs-1"></i>
+                    </div>
+                    <h4 class="text-white">Comunidade Unida</h4>
+                    <p class="text-light">Rede de apoio entre cooperados para crescimento mútuo e desenvolvimento sustentável.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="bi bi-graph-up-arrow fs-1"></i>
+                    </div>
+                    <h4 class="text-white">Crescimento Conjunto</h4>
+                    <p class="text-light">Oportunidades de crescimento pessoal e profissional através de cursos e capacitações.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'core:servicos' %}" class="btn btn-light btn-lg">Conheça Todos os Serviços</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
