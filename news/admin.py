@@ -10,14 +10,14 @@ class NewsAdmin(admin.ModelAdmin):
     search_fields = ('titulo', 'conteudo')
     list_filter = ('categoria', 'status')
     date_hierarchy = 'data_publicacao'
-    prepopulated_fields = {'slug': ('titulo',)}
+   # prepopulated_fields = {'slug': ('titulo',)}
 
 
 @admin.register(NewsCategory)
 class NewsCategoryAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'slug')
+    list_display = ('nome',)
     search_fields = ('nome',)
-    prepopulated_fields = {'slug': ('nome',)}
+    #prepopulated_fields = {'slug': ('nome',)}
 
 
     

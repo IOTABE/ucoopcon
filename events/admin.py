@@ -1,13 +1,13 @@
 from django.contrib import admin
 from .models import Evento as Event, InscricaoEvento as Inscription
 
-
+ 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin): 
     list_display = ('titulo', 'slug', 'descricao', 'tipo', 'status', 'data_inicio', 'data_fim', 'local', 'endereco', 'organizador', 'capacidade_maxima', 'inscricao_obrigatoria', 'imagem')
     list_filter = ('tipo', 'status', 'data_inicio', 'data_fim', 'organizador')
     search_fields = ('titulo', 'descricao')
-    list_filter = ('tipo', 'status', 'categoria')
+    list_filter = ('tipo', 'status', )
     prepopulated_fields = {'slug': ('titulo',)}
     date_hierarchy = 'data_inicio'
 

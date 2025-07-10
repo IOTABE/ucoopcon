@@ -13,6 +13,133 @@ class StatusMembro(models.TextChoices):
     ATIVO = 'ativo', 'Ativo'
     INATIVO = 'inativo', 'Inativo'
     SUSPENSO = 'suspenso', 'Suspenso'
+    
+
+class FormaDePagamento(models.TextChoices):
+    BOLETO = 'boleto', 'Boleto'
+    CARTAO_CREDITO = 'cartao_credito', 'Cartão de Crédito'
+    TRANSFERENCIA = 'transferencia', 'Transferência'
+    DINHEIRO = 'dinheiro', 'Dinheiro'
+    PIX = 'pix', 'PIX'
+    CHEQUEAVISTA = 'chequeavista', 'Cheque à Vista'
+    CHEQUEPARCELADO = 'chequeparcelado', 'Cheque Parcelado'
+    DEPOSITO = 'deposito', 'Depósito'
+    CONSIGNADO = 'consignado', 'Consignado'
+    VALEALIMENTACAO = 'valealimentacao', 'Vale Alimentação'
+    VALETRANSPORTE = 'valetransporte', 'Vale Transporte'
+    TRANSFERENCIABANCARIA = 'transferenciabancaria', 'Transferência Bancária'
+    CREDIARIOPROPRIO = 'crediariopropio', 'Crediário Próprio'
+    CARTAO_DEBITO = 'cartao_debito', 'Cartão de Débito'
+    
+    
+class Profissoes(models.Model):
+    nome_profissao = models.CharField(max_length=100, unique=True)
+    requer_registro = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Profissão'
+        verbose_name_plural = 'Profissões'
+        ordering = ['nome_profissao']
+
+    def __str__(self):
+        return self.nome_profissao
+
+
+class Ufs(models.Model):
+    sigla = models.CharField(max_length=2, unique=True)
+    nome = models.CharField(max_length=100)
+    dt_cad = models.DateTimeField(auto_now_add=True)
+    dt_update = models.DateTimeField(auto_now=True)
+    dt_delete = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'UF'
+        verbose_name_plural = 'UFs'
+        ordering = ['sigla']
+
+    def __str__(self):
+        return self.sigla
+
+class TipoPessoa(models.TextChoices):
+    FISICA = 'fisica', 'Pessoa Física'
+    JURIDICA = 'juridica', 'Pessoa Jurídica'
+    
+
+class Pessoas(models.Model):
+    nome = models.CharField(max_length=100)
+    tipo = models.CharField(max_length=20, choices=TipoPessoa.choices, default=TipoPessoa.FISICA)
+    is_dependente_pessoa = models.BooleanField(default=False, help_text='Marcar se é dependente de outra pessoa')
+    profissao = models.ForeignKey(Profissoes, on_delete=models.CASCADE, related_name='pessoas', blank=True, null=True)
+    data_nascimento = models.DateField(blank=True, null=True)
+    sexo = models.CharField(max_length=10, choices=[('masculino', 'Masculino'), ('feminino', 'Feminino')], blank=True, null=True)
+    rg = models.CharField(max_length=20, unique=True, blank=True, null=True)
+    orgao_expedidor_rg = models.CharField(max_length=20, blank=True, null=True)
+    data_expedicao_rg = models.DateField(blank=True, null=True)
+    cpf = models.CharField(max_length=14, unique=True, blank=True, null=True)
+    cnpj = models.CharField(max_length=18, unique=True, blank=True, null=True)
+    razao_social = models.CharField(max_length=200, blank=True, null=True)
+    nome_fantasia = models.CharField(max_length=200, blank=True, null=True)
+    inscricao_estadual = models.CharField(max_length=20, blank=True, null=True)
+    inscricao_municipal = models.CharField(max_length=20, blank=True, null=True)
+    ie_substituta = models.CharField(max_length=20, blank=True, null=True)
+    ie_st = models.CharField(max_length=20, blank=True, null=True)
+    ie_municipal = models.CharField(max_length=20, blank=True, null=True)
+    ie_estadual = models.CharField(max_length=20, blank=True, null=True)
+    ie_federal = models.CharField(max_length=20, blank=True, null=True)
+    ie_matriz_filial = models.CharField(max_length=20, blank=True, null=True)
+    ie_suframa = models.CharField(max_length=20, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    telefone = models.CharField(max_length=20, blank=True, null=True)
+    endereco = models.TextField(blank=True, null=True)
+    estado_civil = models.CharField(max_length=20, choices=[('solteiro', 'Solteiro'), ('casado', 'Casado'), ('divorciado', 'Divorciado'), ('viuvo', 'Viúvo')], blank=True, null=True)
+    nacionalidade = models.CharField(max_length=50, blank=True, null=True)
+    naturalidade = models.CharField(max_length=100, blank=True, null=True)
+    cep = models.CharField(max_length=9, blank=True, null=True)
+    complemento = models.CharField(max_length=100, blank=True, null=True)
+    numero = models.CharField(max_length=20, blank=True, null=True)
+    bairro = models.CharField(max_length=100, blank=True, null=True)
+    telefone_comercial = models.CharField(max_length=20, blank=True, null=True)
+    telefone_celular = models.CharField(max_length=20, blank=True, null=True)
+    telefone_residencial = models.CharField(max_length=20, blank=True, null=True)
+    telefone_outro = models.CharField(max_length=20, blank=True, null=True)
+    cidade = models.ForeignKey('Cidades', on_delete=models.CASCADE, related_name='pessoas')
+    estado = models.ForeignKey(Ufs, on_delete=models.CASCADE, related_name='pessoas')
+    website = models.URLField(blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    youtube = models.URLField(blank=True, null=True)
+    foto = models.ImageField(upload_to='pessoas/', blank=True, null=True)
+    ativo = models.BooleanField(default=True)
+    status_cadastro = models.CharField(max_length=20, choices=[('pendente', 'Pendente'), ('aprovado', 'Aprovado'), ('rejeitado', 'Rejeitado')], default='pendente')
+    status_financeiro = models.CharField(max_length=20, choices=[('ativo', 'Ativo'), ('inativo', 'Inativo')], default='ativo')
+    cod_indicacao_pessoa = models.CharField(max_length=20, unique=True, blank=True, null=True)
+    data_cadastro = models.DateTimeField(auto_now_add=True)
+    data_atualizacao = models.DateTimeField(auto_now=True)
+    data_exclusao = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Pessoa'
+        verbose_name_plural = 'Pessoas'
+        ordering = ['nome']
+
+    def __str__(self):
+        return self.nome
+
+    def get_absolute_url(self):
+        return reverse('members:detail', kwargs={'pk': self.pk})
+    data_cadastro = models.DateTimeField(auto_now_add=True)    
+    
+    
+class Cidades(models.Model):
+    nome = models.CharField(max_length=100)
+    uf = models.ForeignKey(Ufs, on_delete=models.CASCADE, related_name='cidades')
+    cep_geral_cidade = models.CharField(max_length=9, blank=True, null=True)
+    cod_ibg_cidade = models.CharField(max_length=10, unique=True, blank=True, null=True)
+    dt_cad = models.DateTimeField(auto_now_add=True)
+    dt_update = models.DateTimeField(auto_now=True)
+    dt_delete = models.DateTimeField(null=True, blank=True)    
 
 class Membro(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -70,3 +197,47 @@ class Contribuicao(models.Model):
     
     def __str__(self):
         return f"{self.membro} - R$ {self.valor} - {self.mes_referencia.strftime('%m/%Y')}"
+    
+    
+class Parceiros(models.Model):
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField(blank=True)
+    site = models.URLField(blank=True, null=True)
+    logo = models.ImageField(upload_to='parceiros/', blank=True, null=True)
+    data_cadastro = models.DateTimeField(auto_now_add=True)
+    ativo = models.BooleanField(default=True)
+    data_atualizacao = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = 'Parceiro'
+        verbose_name_plural = 'Parceiros'
+        ordering = ['nome']
+    
+    def __str__(self):
+        return self.nome
+    
+    def get_absolute_url(self):
+        return reverse('members:parceiro_detail', kwargs={'pk': self.pk})
+
+    def save(self, *args, **kwargs):
+        if not self.logo:
+            self.logo = 'parceiros/default_logo.png'  # Default logo if none provided
+
+
+class Planos(models.Model):
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField(blank=True)
+    valor_plano = models.DecimalField(max_digits=10, decimal_places=2)
+    valor_promocional = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    data_inicio = models.DateField()
+    data_fim = models.DateField()
+    
+    ativo = models.BooleanField(default=True)
+    data_cadastro = models.DateTimeField(auto_now_add=True)
+    data_atualizacao = models.DateTimeField(auto_now=True)    
+
+class Cooperados(models.Model):
+    membro = models.ForeignKey(Pessoas, on_delete=models.CASCADE, related_name='cooperados')
+    
+    
+    
