@@ -11,7 +11,15 @@ from django.utils import timezone
 class MembroForm(forms.ModelForm):
     class Meta:
         model = Membro
-        exclude = ['numero_membro', 'pessoa']
+        fields = [
+           'pessoa', 
+            'plano', 
+            'parcelas', 
+            'tipo_membro', 
+            'status', 
+            'ativo'
+            ]
+        
         
 class ContribuicaoForm(forms.ModelForm):
     class Meta:
