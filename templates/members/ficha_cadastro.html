@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+{% block content %}
+  <!--
+  <h2>Ficha de Cadastro do Membro</h2>
+  <p><strong>Número do Membro:</strong> {{ membro.numero_membro }}</p>
+  <p><strong>Nome:</strong> {{ membro.pessoa.nome }}</p>
+  <p><strong>CPF:</strong> {{ membro.pessoa.cpf }}</p>
+  <p><strong>Data de Nascimento:</strong> {{ membro.pessoa.data_nascimento }}</p>
+  <p><strong>Plano:</strong> {{ membro.plano }}</p>
+  <p><strong>Parcelas:</strong> {{ membro.parcelas }}</p>
+   Adicione outros campos relevantes -->
+   <table width="100%" style="text-align: center">
+    <tr>
+        <td class="col-lg-4" style="text-align: left;">
+            Grau de sigilo<br/>
+            #PÚBLICO
+        </td>
+        <td style="text-align: right;">
+            N° de Matrícula<br/>
+            {{ dp_cop.id_cop|zeropad(10) }} <br/>
+            <barcode code="{{ dp_cop.id_cop|zeropad(10) }}" type="C128C" class="barcode" height="0.5" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+    </tr>
+</table>
+<br/>
+<table class="table_contrato" >
+    <tr>
+        <td class="col-lg-9" colspan="3"><span class="negrito">Nome/Razão Social.: </span> {{ dp_cop.nome_rz_pes }}</td>
+        <td class="col-lg-3"><span class="negrito">Nasc/Fund..:</span> {{ dp_cop.dtnasc_fund_pes|format_date }}</td>
+    </tr>
+    <tr>
+        <td class="col-lg-3"><span class="negrito">Sexo..: </span> {{ dp_cop.sexo_pes }}</td>
+        <td class="col-lg-3"><span class="negrito">Nacionalide..: </span> {{ dp_cop.nacionalidade_pes }}</td>
+        <td class="col-lg-6" colspan="2"><span class="negrito">Naturalidade..:</span> {{ dp_cop.naturalidade_pes }}</td>
+    </tr>
+    <tr>
+        <td class="col-lg-4"><span class="negrito">CPF/CNPJ..: </span> {{ dp_cop.cpf_cnpj_pes }}</td>
+        <td class="col-lg-2"><span class="negrito">RG/IE..: </span> {{ dp_cop.rg_ie_pes }}</td>
+        <td class="col-lg-3"><span class="negrito">Órg. Exped.:</span> {{ dp_cop.rg_org_exp_pes }}</td>
+        <td class="col-lg-3"><span class="negrito">UF Exped..:</span> {{ dp_cop.rg_uf_pes }}</td>
+    </tr>
+    <tr>
+        <td class="col-lg-9" colspan="2"><span class="negrito">Profissão..: </span> {{ dp_cop.nome_prof }}</td>
+        <td class="col-lg-3" colspan="2"><span class="negrito">Registro no conselho..: </span> {{ dp_cop.registro_prof_pes }}</td>
+    </tr>
+    <tr>
+        <td class="col-lg-4" ><span class="negrito">Estado Civil..: </span> {{ dp_cop.estado_civil_pes }}</td>
+        <td class="col-lg-8" colspan="3"><span class="negrito">Cônjuge..: </span> {{ dp_cop.conjuge_pes }}</td>
+    </tr>
+    <tr>
+        <td class="col-lg-12 text-center bg-cinza" colspan="4">ENDEREÇO RESIDÊNCIAL</td>
+    </tr>
+    <tr>
+        <td class="col-lg-9" colspan="2"><span class="negrito">Logradouro..: </span> {{ end_res.logradouro_end }}, <b>N°..:</b> {{ end_res.numero_end }}</td>
+        <td class="col-lg-3" colspan="2"><span class="negrito">Complemento..: </span> {{ end_res.complemento_end }}</td>
+    </tr>
+    <tr>
+        <td class="col-lg-4"><span class="negrito">Bairro..: </span> {{ end_res.bairro_end }}</td>
+        <td class="col-lg-2"><span class="negrito">Cidade..: </span> {{ end_res.nome_cidade }}</td>
+        <td class="col-lg-3"><span class="negrito">UF.:</span>  {{ end_res.cigla_uf }}</td>
+        <td class="col-lg-3"><span class="negrito">CEP..:</span>  {{ end_res.cep_end }}</td>
+    </tr>
+    <tr>
+        <td class="text-center bg-cinza" colspan="4">ENDEREÇO COMERCIAL</td>
+    </tr>
+    <tr>
+        <td class="col-lg-9" colspan="2"><span class="negrito">Logradouro..: </span> {{ end_com.logradouro_end }}<b>, N°..:</b> {{ end_com.numero_end }}</td>
+        <td class="col-lg-3" colspan="2"><span class="negrito">Complemento..: </span> {{ end_com.complemento_end }}</td>
+    </tr>
+    <tr>
+        <td class="col-lg-4"><span class="negrito">Bairro..: </span> {{ end_com.bairro_end }}</td>
+        <td class="col-lg-2"><span class="negrito">Cidade..: </span> {{ end_com.nome_cidade }}</td>
+        <td class="col-lg-3"><span class="negrito">UF.:</span> {{ end_com.cigla_uf }}</td>
+        <td class="col-lg-3"><span class="negrito">CEP..:</span> {{ end_com.cep_end }}</td>
+    </tr>
+    <tr>
+        <td class="col-lg-4"><span class="negrito">Email..: </span> {{ dp_cop.email_pes }}</td>
+        <td class="col-lg-2"><span class="negrito">Fone..: </span> {{ dp_cop.fone_pes }}</td>
+        <td class="col-lg-3"><span class="negrito">Celular.:</span> {{ dp_cop.celular_pes }}</td>
+        <td class="col-lg-3"><span class="negrito">Indicação..:</span> {{ dp_cop.cod_indicacao_pes|zeropad(10) }}</td>
+    </tr>
+</table>
+<br/>
+<table class="table_contrato">
+    <thead>
+        <tr>
+            <td class="col-lg-4" colspan="2"><span class="negrito">Plano/Cota..: </span> {{ dp_cop.nome_pl }} - {{ dp_cop.num_cotas_pl|zeropad(2) }} Cotas</td>
+            <td class="col-lg-4" colspan="2"><span class="negrito">Cond. Pgto..: </span> {{ dp_cop.nome_cdpg_pl }}</td>
+            <td class="col-lg-4" colspan="2"><span class="negrito">R$ Total..: </span> R$ {{ dp_cop.valor_prom_pl|format_real }}</td>
+        </tr>
+        <tr>
+            <td colspan="5" class="bg-cinza text-center">
+                CONTA CORRENTE DE INTEGRALIZAÇÃO DA COTA CAPITAL
+            </td>
+        </tr>
+        <tr class="bg-cinza-1 text-center">
+            <th class="col-lg-2">Nº </th>
+            <th class="col-lg-3">Forma de Pagamento</th>
+            <th class="col-lg-2">Vencimento</th>
+            <th class="col-lg-2">R$ Parcela</th>
+            <th class="col-lg-3">R$ Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set vlSoma = 0 %}
+        {% for neg in neg_cop %}
+            {% set vlSoma = vlSoma + neg.valor_liquido_cop %}
+            <tr>
+                <td>{{ neg.num_doc_neg_cop }}</td>
+                <td>{{ neg.nome_fpgt }}</td>
+                <td class="text-center">{{ neg.dt_vencimento_neg_cop|format_date }}</td>
+                <td class="text-right">R$ {{ neg.valor_liquido_cop|format_real }}</td>
+                <td class="text-right">R$ {{ vlSoma|format_real }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-right negrito">TOTAL</td>
+            <td class="text-right negrito">R$ {{ vlSoma|format_real }}</td>
+        </tr>
+    </tfoot>
+</table>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<table class="table_declaracao" >
+    <tbody>
+    <tr>
+        <td class="td_tit_dec text-center" colspan="2">
+            <h3><b> DECLARAÇÃO</b></h3><p></p><br></p>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_dec text-justify" colspan="2">
+            <p>
+                Declaro, para os devidos fins que, como trabalhador autônomo e consumidor ou simplesmente como consumidor, optei livremente em participar da União Cooperativa de Consumo de Combustíveis - UCOOPCON, onde se necessário exercerei minhas atividades profissionais sem vínculo empregatício, ciente que, de acordo com a Lei Nº 5.764/71, não terei direito aos encargos trabalhistas previstos na CLT – Consolidação das Leis do Trabalho.
+            </p>
+            <p>
+                Declaro Também que tenho pleno conhecimento dos meus direitos
+                e deveres e estou de acordo com o Estatuto Social desta Cooperativa.
+            </p>
+        </td>
+    </tr>
+    <br><br>
+    <tr>
+        <td class="bg-cinza td_borderall text-center" colspan="2" ><b>HISTÓRICO DE EVENTOS</b></td>
+    </tr>
+    <br>
+    <tr>
+        <td class="td_assina_lef"><b>Admissão na cooperativa:</b></td>
+        <td class="td_assina_lef td_assina_rigth text-right"><b>Demissão(&nbsp;&nbsp;&nbsp;&nbsp;) Eliminação (&nbsp;&nbsp;&nbsp;&nbsp;) Exclusão (&nbsp;&nbsp;&nbsp;&nbsp;)</b></td>
+    </tr>
+    <tr>
+        <td class="td_assina_lef">Data..: {{ dp_cop.dt_cad_cop|format_date }}</td>
+        <td class="td_assina_lef td_assina_rigth text-right">Data..: ________/________/___________</td>
+    </tr>
+    <p><br>
+        <br>
+    <br>
+    <br>
+    <br>
+    </p>
+    <tr>
+        <td class="td_assina_lef text-center linha_assina"> <hr /></td>
+        <td class="td_assina_lef td_assina_rigth text-center linha_assina"> <hr /></td>
+    </tr>
+    <tr>
+        <td class="td_assina_lef td_nome_assina text-center">Assinatura do Cooperado</td>
+        <td class="td_assina_lef td_assina_rigth td_nome_assina text-center">Assinatura do Cooperado</td>
+    </tr>
+    <p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </p>
+    <tr>
+        <td class="td_assina_lef text-center linha_assina"><hr /></td>
+        <td class="td_assina_lef td_assina_rigth text-center linha_assina"> <hr /></td>
+    </tr>
+    <tr>
+        <td class="td_assina_lef td_nome_assina text-center td_border_bottom">Presidente da UCOOPCON</td>
+        <td class="td_assina_lef td_assina_rigth td_nome_assina text-center td_border_bottom">Presidente da UCOOPCON</td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<br/>
+<br/>
+<table class="table_contrato">
+    <tr>
+        <td class="col-lg-9 text-justify">
+            Este documento possui segurança antifraudes utilizando a tecnologia QR Code (Quick Response) para verificação de autenticidade.
+            Para verificar se este documento é autêntico bem como sua validade, aponte seu leitor de QR Code sobre o código ao lado.
+        </td>
+        <td class="col-lg-3 text-center">
+            <barcode code="{{ url_autenticidade }}/{{ id_cooperado|base64_encode }}" type="QR" class="barcode" size="0.6" error="M" />
+            <br/>
+            <span class="text-center">Verificar Autenticidade</span>
+        </td>
+    </tr>
+</table>
+
+
+  {% endblock %}

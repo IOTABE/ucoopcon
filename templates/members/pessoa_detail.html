@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Detalhes da Pessoa</h2>
+  <p>{{ pessoa }}</p>
+  <a href="{% url 'members:criar_membro' pessoa.pk %}">Tornar-se membro</a>
+{% endblock %}

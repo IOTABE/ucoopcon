@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import PessoaCreateView, PessoaListView, PessoaDetailView, CriarMembroView, ficha_cadastro_pdf_view, termo_adesao_pdf_view
 
 app_name = 'members'
 
@@ -32,4 +33,18 @@ urlpatterns = [
     path('relatorios/contribuicoes/mensais/', views.monthly_contributions_report_view, name='monthly_contributions_report'),
     path('relatorios/contribuicoes/anuais/', views.yearly_contributions_report_view, name='yearly_contributions_report'),
     path('relatorios/contribuicoes/periodo/', views.periodic_contributions_report_view, name='periodic_contributions_report'),
+    
+    # Novas URLs para pessoas
+    path('pessoas/', PessoaListView.as_view(), name='pessoa_list'),
+    path('pessoas/novo/', PessoaCreateView.as_view(), name='pessoa_create'),
+    path('pessoas/<int:pk>/', PessoaDetailView.as_view(), name='pessoa_detail'),
+    
+    # URL para tornar uma pessoa um membro
+    path('pessoas/<int:pessoa_pk>/tornar-membro/', CriarMembroView.as_view(), name='criar_membro'),
+    
+    # URL para ficha de cadastro em PDF
+    path('membro/<int:pk>/ficha-cadastro/', ficha_cadastro_pdf_view, name='ficha_cadastro_pdf'),
+    
+    # URL para termo de adesão em PDF
+    path('membro/<int:pk>/termo-adesao/', termo_adesao_pdf_view, name='termo_adesao_pdf'),
 ]

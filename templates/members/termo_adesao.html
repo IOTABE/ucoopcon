@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block content %}
+ <table width="100%" style="text-align: center">
+    <tr>
+        <td class="col-lg-3">
+            N° de Controle<br/>
+            {{ membro.numero_membro|default_if_none:"" }} <br/>
+            <!-- Barcode pode ser implementado via imagem/URL se necessário -->
+        </td>
+        <td class="col-lg-6">
+            
+        </td>
+        <td class="col-lg-3">
+            Grau de sigilo<br/>
+            #PÚBLICO
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <h3> TERMO DE ADESÃO DE SÓCIO COOPERADO</h3>
+        </td>
+    </tr>
+</table>
+
+<table class="table_declaracao" >
+    <tbody>
+    <tr>
+        <td class="text-justify" colspan="2">
+            <p>
+                De um lado a União Cooperativa de Consumo de Combustíveis - UCOOPCON, com CNPJ: 32.326.722/0001-27, localizada na Avenida Brasil, 479, Setor Coimbra, CEP 77826-566, Araguaína-TO, ora denominada simplesmente cooperativa, e de outro lado, o(a) <b>cooperado(a) {{ membro.pessoa.nome }}</b> inscrito(a) sob matrícula nº <b> {{ membro.numero_membro|default_if_none:"" }}</b>, com CPF/CNPJ: <b>{{ membro.pessoa.cpf }}</b>, 
+                residente/localizado(a) na <b>{{ membro.pessoa.logradouro_res }}</b>, <b>{{ membro.pessoa.complemento_res }}</b>, 
+                Nº <b>{{ membro.pessoa.numero_res }}</b>, <b>{{ membro.pessoa.bairro_res }}</b>, CEP: <b>{{ membro.pessoa.cep_res }}</b>, na cidade de <b>{{ membro.pessoa.cidade_res }}</b> - <b>{{ membro.pessoa.uf_res }}</b>, 
+                doravante denominado(a) simplesmente como sócio(a) cooperado(a) consumidor(a) ou como sócio(a) cooperado(a) consumidor(a) e profissional autônomo(a).<br/>
+                Pelo presente instrumento particular, as partes acima qualificadas livres e espontaneamente resolvem celebrar o presente instrumento mediante as cláusulas:
+            </p>
+            <br />
+            <p>
+                <span class="paragrafo">1 - Da condição de sócio(a) cooperado(a) </span> – o(a) cooperado(a) acima qualificado(a) e identificado(a) declara, sob as penas da lei, que a adesão ao quadro de sócios(as) cooperados(as) da UCOOPCON é efetivada de forma livre e espontânea, comprometendo-se a respeitar e cumprir as normas previstas no Estatuto Social e no Regimento Interno da UCOOPCON, bem como honrar suas obrigações perante a sociedade, agindo sempre com boa fé e lealdade em busca da melhoria das condições do grupo de cooperados(as) do qual passa fazer parte.
+            </p>
+            <br />
+            <p>
+                <span class="paragrafo">2 - Da integralização da cota capital  </span> – o(a) cooperado(a) declara ter plena consciência das formas de integralização do capital social, conforme ditames do estatuto social, adquirindo duas Cotas Capital da UCOOPCON, pagando uma Cota Capital à vista no ato de sua adesão e descontando-se o valor da outra Cota Capital em 06 parcelas iguais de R$110,00 (cento e dez reais)
+de sua remuneração, caso contratado(a) pela UCOOPCON ou adquirindo uma Cota Capital a vista ou podendo pagar em até 12 parcelas de R$577,10 (cinquenta e sete reais e dez centavos).
+            </p>
+            <br />
+            <p>
+                <span class="paragrafo">3 - Da prestação de serviços </span> – o(a) cooperado(a) tem pleno conhecimento de que os contratos celebrados pela UCOOPCON são cumpridos apenas pelos(as) cooperados(as), razão pela qual se compromete a prestar serviços sempre com qualidade, eficiência, responsabilidade e honestidade.
+            </p>
+            <br />
+            <p>
+                <span class="paragrafo">4 – Do(a) gestor(a) – </span>tendo em vista que o(a) cooperado(a) prestará seus serviços como trabalhador(a) autônomo(a), não se sujeitará a qualquer imposição ou subordinação da pessoa física ou jurídica contratante, devendo resolver qualquer dúvida, reclamação ou esclarecimento com o(a) gestor(a) de atividades, o(a) qual é igualmente sócio(a) cooperado(a) e estará à disposição do(a) cooperado(a) para ajudá-lo(a) no desenvolvimento de suas atividades.
+            </p>
+            <br />
+            <p>
+                <span class="paragrafo">5 - Do pagamento </span> - o pagamento da quantia devida em virtude dos serviços prestados pelo(a) cooperado(a) será realizado de acordo com a data estabelecida no contrato de transferência de atividade celebrado entre a UCOOPCON e o(a) tomador(a) dos serviços e se o contrato celebrado for entre o(a) cooperado(a) e a própria UCOOPCON, o pagamento pode ser realizado até o 5º dia útil do mês subseqüente ao mês dos serviços prestados.
+            </p>
+            <br/>
+            <p>
+                <span class="paragrafo">5.1</span> - O(a) cooperado(a) tem pleno conhecimento de que o pagamento estipulado no item anterior referente a contrato com tomador(a) de serviços externo, depende do pagamento realizado por este e caso este não pague o valor acordado, nada será repassado ao cooperado(a), comprometendo-se a UCOOPCON a adotar as providências em busca da recuperação do crédito;
+            </p>
+            <br/>
+            <p>
+                <span class="paragrafo">6 - Das responsabilidades do(a) cooperado(a)</span> - o(a) cooperado(a) responderá pelos danos materiais e morais que causar a terceiros durante a prestação dos serviços, assumindo integralmente as conseqüências civis e criminais decorrentes de seus atos.
+            </p>
+            <br/>
+            <p>
+                <span class="paragrafo">7 - Da inexistência de vínculo empregatício</span>
+            </p> 
+            <p>
+                <span class="paragrafo">7.1 - O artigo 90 da Lei 5.764/71</span> dispõe que qualquer que seja o tipo de cooperativa, não existe vínculo empregatício entre ela e seus cooperados.
+            </p>           
+        </td>
+    </tr>
+    <tr>
+        <td class="text-justify" colspan="2">
+            <p>
+                <span class="paragrafo">7.2 - O parágrafo único do Artigo 442 da CLT  </span> – determina que qualquer que seja o ramo de atividade da sociedade cooperativa, não existe vínculo empregatício entre ela e seus/suas cooperados(as), nem entre estes(as) e os(as) tomadores(as) de serviços daquela.
+            </p>
+            <br/>
+            <p>
+                <span class="paragrafo">7.3 </span> – O(a) cooperado(a) declara haver compreendido os textos das leis mencionadas acima, bem como que prestará os seus serviços como trabalhador(a) autônomo(a), não tendo direito a nenhuma verba previstas na CLT, já que não será empregado(a) do(a) tomador(a) dos serviços nem da UCOOPCON, ficando ciente que a taxa referente ao INSS, será descontado pela UCOOPCON do pagamento.
+            </p>
+            <br/>
+            <p>
+                <span class="paragrafo">8 - Da cláusula compromissória </span> – o(a) cooperado(a) e a cooperativa convencionam, desde já, que qualquer litígio ou controvérsia decorrente da prestação de serviços do(a) cooperado(a) a qualquer tomador(a) dos serviços através da UCOOPCON, será solucionado através da justiça comum estadual, ficando desde já eleito o foro de Araguaína - TO, renunciando a qualquer outro por mais privilegiado que seja. E, por estarem assim justos e contratados, firmam o presente instrumento particular de termo de adesão de sócio(a) cooperado(a) em 02 (duas) vias de igual teor e forma na presença de duas testemunhas.
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-right" colspan="2">Araguína - TO, {{ membro.data_adesao|date:"d/m/Y" }}</td>
+    </tr>
+    <tr>
+        <td class="text-center linha_assina"> <hr /></td>
+        <td class="text-center linha_assina"> <hr /></td>
+    </tr>
+    <tr>
+        <td class="td_nome_assina text-center">Assinatura do Cooperado</td>
+        <td class="td_nome_assina text-center">Presidente da UCOOPCON</td>
+    </tr>
+    <tr>
+        <td class="linha_assina"> <hr /></td>
+        <td class="text-center linha_assina"> <hr /></td>
+    </tr>
+    <tr>
+        <td class="td_nome_assina text-center ">Testemunha 1</td>
+        <td class="td_nome_assina text-center ">Testemunha 2</td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<br/>
+<table class="table_contrato">
+    <tr>
+        <td class="col-lg-9 text-justify">
+            Este documento possui segurança antifraudes utilizando a tecnologia QR Code (Quick Response) para verificação de autenticidade.
+            Para verificar se este documento é autêntico bem como sua validade, aponte seu leitor de QR Code sobre o código ao lado.
+        </td>
+        <td class="col-lg-3 text-center">
+            <!-- Implemente o QR Code conforme sua lógica, ex: usando uma URL de verificação -->
+            {# <img src="{{ url_qrcode }}" alt="QR Code"> #}
+            <br/>
+            <span class="text-center">Verificar Autenticidade</span>
+        </td>
+    </tr>
+</table>
+{% endblock %}

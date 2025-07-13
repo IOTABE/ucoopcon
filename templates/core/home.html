@@ -4,16 +4,21 @@
 {% block title %}UCOOPCON - Cooperativa de Desenvolvimento{% endblock %}
 
 {% block content %}
+<div class="home-main">
+    
 <!-- Hero Section com fundo verde escuro -->
 <section class="hero-section bg-dark-green">
-    <div class="container">
+    <div class="container" "bg-dark-green" style="color: #000;">
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <h1 class="display-4 fw-bold mb-4">UCOOPCON</h1>
                 <p class="lead mb-4">Cooperativa de desenvolvimento e crescimento mútuo. Juntos construímos um futuro próspero e sustentável para todos os nossos cooperados.</p>
                 <div class="d-flex gap-3">
                     <a href="{% url 'core:sobre' %}" class="btn btn-light btn-lg">Saiba Mais</a>
-                    <a href="{% url 'core:contato' %}" class="btn btn-outline-light btn-lg">Contato</a>
+                    <!-- ...código existente... -->
+                    <a href="{% url 'members:pessoa_create' %}" class="btn btn-light btn-lg">Cadastre-se</a>
+                    <!-- ...código existente... -->
+                    <a href="{% url 'core:contato' %}" class="btn btn-light btn-lg">Contato</a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -187,4 +192,6 @@
         </div>
     </div>
 </section>
+</div>
+
 {% endblock %}

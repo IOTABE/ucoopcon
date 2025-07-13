@@ -1,5 +1,5 @@
 from django import forms
-from .models import Membro, Contribuicao, TipoContribuicao, StatusContribuicao
+from .models import Membro, Contribuicao, TipoContribuicao, StatusContribuicao, Pessoas
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -11,9 +11,7 @@ from django.utils import timezone
 class MembroForm(forms.ModelForm):
     class Meta:
         model = Membro
-        fields = ['user', 'nome', 'numero_membro', 'tipo_membro', 'status', 'data_nascimento', 
-                  'cpf', 'rg', 'telefone', 'endereco', 'cidade', 'estado', 'cep', 'data_adesao', 
-                  'foto', 'ativo']    
+        exclude = ['numero_membro', 'pessoa']
         
 class ContribuicaoForm(forms.ModelForm):
     class Meta:
@@ -98,3 +96,8 @@ class MembroSearchFormDuplicated(forms.Form):
 
     def get_membro_queryset(self):
         return Membro.objects.all()
+
+class PessoaForm(forms.ModelForm):
+    class Meta:
+        model = Pessoas
+        fields = '__all__'

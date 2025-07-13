@@ -1,11 +1,11 @@
 /ctic/Development/ucoopcon/static/css/style.css */
 :root {
-    --primary-color: #28a745;
+    --primary-color: #000702;
     --primary-dark: #1e7e34;
     --primary-light: #5cb85c;
     --navbar-bg: #5cb85c;
     --footer-bg: #5cb85c;
-    --hero-bg: #1e7e34;
+    --hero-bg: #025816;
     --secondary-color: #6c757d;
     --success-color: #198754;
     --info-color: #0dcaf0;
@@ -22,7 +22,7 @@ body {
 
 .hero-section {
     background: linear-gradient(135deg, var(--primary-color), var(--hero-bg));
-    color: white;
+    color: rgb(6, 10, 0);
     padding: 4rem 0;
 }
 
@@ -90,12 +90,12 @@ body {
 /* Seções com fundo verde escuro */
 .bg-dark-green {
     background-color: var(--hero-bg) !important;
-    color: white;
+    color: rgb(1, 15, 1);
 }
 
 /* Seções com fundo verde claro para contraste */
 .bg-light-green {
-    background-color: #f8fff8 !important;
+    background-color: #98f598 !important;
 }
 
 footer {
@@ -167,4 +167,9 @@ footer {
     background-color: rgba(40, 167, 69, 0.1);
     border-color: var(--primary-color);
     color: var(--primary-dark);
+}
+
+.home-main {
+    background-color: var(--hero-bg);
+    color: #000;
 }

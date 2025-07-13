@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -7,8 +7,8 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponse
 from django.utils import timezone
-from .models import Membro, Contribuicao
-from .forms import MembroForm, ContribuicaoForm, MembroSearchForm, ContribuicaoSearchForm
+from .models import Membro, Contribuicao, Pessoas
+from .forms import MembroForm, ContribuicaoForm, MembroSearchForm, ContribuicaoSearchForm, PessoaForm
 from .reports import (generate_member_report, 
                     generate_contribution_report, 
                     generate_active_members_report, 
@@ -48,6 +48,9 @@ from .reports import (generate_member_report,
                     generate_contributions_by_member_month_year_type_status_period_report, 
                     generate_contributions_by_member_month_year_type_date_period_report, 
                     generate_contributions_by_member_month_year_status_date_period_report)
+from django.template.loader import render_to_string
+from weasyprint import HTML
+from datetime import date
 
 class MembroListView(LoginRequiredMixin, ListView):
     model = Membro
@@ -197,6 +200,47 @@ class ContribuicaoDeleteView(LoginRequiredMixin, DeleteView):
         messages.success(self.request, 'Contribuição excluída com sucesso!')
         return super().delete(request, *args, **kwargs)
 
+class PessoaCreateView(CreateView):
+    model = Pessoas
+    form_class = PessoaForm
+    template_name = 'members/pessoa_form.html'
+    success_url = reverse_lazy('members:pessoa_list')
+
+class PessoaListView(ListView):
+    model = Pessoas
+    template_name = 'members/pessoa_list.html'
+    context_object_name = 'pessoas'
+
+class PessoaDetailView(DetailView):
+    model = Pessoas
+    template_name = 'members/pessoa_detail.html'
+    context_object_name = 'pessoa'
+
+class CriarMembroView(CreateView):
+    model = Membro
+    form_class = MembroForm
+    template_name = 'members/membro_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.pessoa = get_object_or_404(Pessoas, pk=kwargs['pessoa_pk'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.pessoa = self.pessoa
+        # Geração automática do número do membro
+        ultimo = Membro.objects.order_by('-id').first()
+        proximo_numero = 1 if not ultimo else int(ultimo.numero_membro) + 1
+        form.instance.numero_membro = str(proximo_numero).zfill(6)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('members:detail', kwargs={'pk': self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pessoa'] = self.pessoa
+        return context
+
 # Views para relatórios
 def member_report_view(request):
     """View para relatório de membros"""
@@ -257,3 +301,62 @@ def periodic_contributions_report_view(request):
     if request.method == 'POST':
         return generate_periodic_contributions_report(request)
     return render(request, 'members/reports/periodic_contributions_report.html')
+
+def ficha_cadastro_pdf_view(request, pk):
+    membro = get_object_or_404(Membro, pk=pk)
+    pessoa = membro.pessoa
+
+    # Exemplo de como montar os dados de parcelas (ajuste conforme seu model)
+    # Aqui, supõe-se que exista uma relação de contribuições/parcelas para o membro
+    parcelas = Contribuicao.objects.filter(membro=membro).order_by('data_pagamento')
+    parcelas_list = []
+    total = 0
+    for idx, parcela in enumerate(parcelas, 1):
+        total += parcela.valor
+        parcelas_list.append({
+            'numero': idx,
+            'forma_pagamento': parcela.get_tipo_display() if hasattr(parcela, 'get_tipo_display') else parcela.tipo,
+            'vencimento': parcela.data_pagamento,
+            'valor': f"{parcela.valor:.2f}",
+            'total': f"{total:.2f}",
+        })
+
+    # Contexto para o template
+    context = {
+        'membro': membro,
+        'parcelas_list': parcelas_list,
+        # Adicione outros dados necessários para o template
+    }
+
+    html_string = render_to_string('members/ficha_cadastro.html', context)
+    html = HTML(string=html_string, base_url=request.build_absolute_uri())
+    pdf = html.write_pdf()
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = f'inline; filename="ficha_cadastro_{membro.numero_membro}.pdf"'
+    return response
+
+def termo_adesao_pdf_view(request, pk):
+    membro = get_object_or_404(Membro, pk=pk)
+    
+    # Se o campo data_adesao não existir, use outro campo de data ou a data atual
+    data_adesao = getattr(membro, 'data_adesao', None)
+    if not data_adesao:
+        from datetime import date
+        data_adesao = date.today()
+    
+    # Se quiser gerar um QR Code, gere a URL/base64 e passe como 'url_qrcode'
+    # Exemplo: url_qrcode = gerar_qrcode_url(membro)
+    url_qrcode = None  # ou gere conforme sua lógica
+
+    context = {
+        'membro': membro,
+        'url_qrcode': url_qrcode,
+        # Adicione outros dados se necessário
+    }
+
+    html_string = render_to_string('members/termo_adesao.html', context)
+    html = HTML(string=html_string, base_url=request.build_absolute_uri())
+    pdf = html.write_pdf()
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = f'inline; filename="termo_adesao_{membro.numero_membro}.pdf"'
+    return response

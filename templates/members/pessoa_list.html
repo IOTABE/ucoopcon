@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Pessoas</h2>
+  <a href="{% url 'members:pessoa_create' %}">Nova Pessoa</a>
+  <ul>
+    {% for pessoa in pessoas %}
+      <li>
+        <a href="{% url 'members:pessoa_detail' pessoa.pk %}">{{ pessoa }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
