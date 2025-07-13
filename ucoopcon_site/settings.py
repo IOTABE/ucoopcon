@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from decouple import config
 from pathlib import Path
+from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,6 +34,14 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lamb
 # Application definition
 
 INSTALLED_APPS = [
+    "unfold",  # before django.contrib.admin
+    "unfold.contrib.filters",  # optional, if special filters are needed
+    "unfold.contrib.forms",  # optional, if special form elements are needed
+    "unfold.contrib.inlines",  # optional, if special inlines are needed
+    "unfold.contrib.import_export",  # optional, if django-import-export package is used
+    "unfold.contrib.guardian",  # optional, if django-guardian package is used
+    "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
+    "unfold.contrib.location_field",  # optional, if django-location-field package is used
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,15 +90,9 @@ WSGI_APPLICATION = 'ucoopcon_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+default_dburl = f'sqlite:///{BASE_DIR / "db.sqlite3"}'
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='ucoopcon_db'),
-        'USER': config('DB_USER', default='postgres'),
-        'PASSWORD': config('DB_PASSWORD', default=''),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='5432'),
-    }
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl)
 }
 
 
@@ -143,3 +146,39 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Crispy Forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+UNFOLD = {
+    "SITE_TITLE": "Administração - Ucoopcon",
+    "SITE_HEADER": "Administração - Ucoopcon",
+    "COLORS": {
+        "base": {
+            "50": "232 243 236",
+            "100": "209 233 217",
+            "200": "183 222 196",
+            "300": "142 204 163",
+            "400": "100 186 130",
+            "500": "30 126 52",  # #1e7e34
+            "600": "27 113 47",
+            "700": "23 94 39",
+            "800": "19 75 31",
+            "900": "15 56 23",
+            "950": "10 37 15",
+        },
+        "primary": {
+            "50": "232 243 236",
+            "100": "209 233 217",
+            "200": "183 222 196",
+            "300": "142 204 163",
+            "400": "100 186 130",
+            "500": "30 126 52",  # #1e7e34
+            "600": "27 113 47",
+            "700": "23 94 39",
+            "800": "19 75 31",
+            "900": "15 56 23",
+            "950": "10 37 15",
+        }
+    },
+    "CUSTOM_CSS": [
+        "css/style.css",
+    ],
+}

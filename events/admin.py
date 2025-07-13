@@ -1,9 +1,10 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 from .models import Evento as Event, InscricaoEvento as Inscription
 
  
 @admin.register(Event)
-class EventAdmin(admin.ModelAdmin): 
+class EventAdmin(ModelAdmin): 
     list_display = ('titulo', 'slug', 'descricao', 'tipo', 'status', 'data_inicio', 'data_fim', 'local', 'endereco', 'organizador', 'capacidade_maxima', 'inscricao_obrigatoria', 'imagem')
     list_filter = ('tipo', 'status', 'data_inicio', 'data_fim', 'organizador')
     search_fields = ('titulo', 'descricao')
@@ -12,7 +13,7 @@ class EventAdmin(admin.ModelAdmin):
     date_hierarchy = 'data_inicio'
 
 @admin.register(Inscription)
-class InscriptionAdmin(admin.ModelAdmin):
+class InscriptionAdmin(ModelAdmin):
     list_display = ('evento', 'participante', 'data_inscricao', 'presente')
     search_fields = ('evento__titulo', 'participante__username')
     list_filter = ('presente',)

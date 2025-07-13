@@ -11,9 +11,18 @@ from django.utils import timezone
 class MembroForm(forms.ModelForm):
     class Meta:
         model = Membro
-        fields = ['user', 'nome', 'numero_membro', 'tipo_membro', 'status', 'data_nascimento', 
-                  'cpf', 'rg', 'telefone', 'endereco', 'cidade', 'estado', 'cep', 'data_adesao', 
-                  'foto', 'ativo']    
+        fields = [
+            'user',
+            'pessoa',
+            'numero_membro',
+            'tipo_membro',
+            'status',
+            'ficha_cadastral_numero',
+            'term_adesao_numero',
+            'data_adesao',
+            'foto',
+            'ativo',
+        ]
         
 class ContribuicaoForm(forms.ModelForm):
     class Meta:
