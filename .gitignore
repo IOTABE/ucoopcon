@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Django
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+media/
+staticfiles/
+.env
+*.env
+*.bak
+*.swp
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Pipenv
+Pipfile.lock
+
+# Mac/Linux
+*.DS_Store
+
+# Windows
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Migrations
+**/migrations/*.pyc
+**/migrations/__pycache__/
