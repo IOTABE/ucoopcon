@@ -109,3 +109,6 @@ class PessoaForm(forms.ModelForm):
     class Meta:
         model = Pessoas
         fields = '__all__'
+        exclude = ['status_cadastro', 'status_financeiro', 'ativo', 'data_exclusao', ]
+
+        

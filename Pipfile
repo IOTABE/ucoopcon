@@ -8,11 +8,11 @@ django = "*"
 pillow = "*"
 python-decouple = "*"
 psycopg2-binary = "*"
-django-crispy-forms = "*"
 crispy-bootstrap5 = "*"
 weasyprint = "*"
 django-unfold = "*"
 dj-database-url = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 black = "*"

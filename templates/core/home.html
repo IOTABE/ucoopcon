@@ -5,20 +5,396 @@
 
 {% block content %}
 <div class="home-main">
-    
-<!-- Hero Section com fundo verde escuro -->
-<section class="hero-section bg-dark-green">
-    <div class="container" "bg-dark-green" style="color: #000;">
+<!-- Banner -->
+<div class="banner text-white" id="banner" style="margin-top:30px; min-height:350px; height:650px; display:flex; align-items:top;">
+<style>
+@media (max-width: 991px) {
+  #banner {
+    margin-top: 10px !important;
+    min-height: 320px !important;
+    height: auto !important;
+    padding: 02px 0 !important;
+    display: block !important;
+  }
+  #banner-slider .banner-item .container .row > div[class^='col-'] {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  #banner-slider .banner-img img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+</style>
+<div id="banner-slider" class="owl-carousel banner-slider">
+            <div class="banner-item item-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="left-part">
+                                <div class="banner-content">
+                                    <h1 class="layer-1">Quer economizar de verdade no combstível?</h1>
+                                    <p class="layer-2">Venha ser um(a) INVESTIDOR(A)/COOPERADO(A) da UCOOPCON para comprar combustíveis a preço de custo em Araguaína - TO.</p>
+                                    <ul class="banner-features layer-3">
+                                        <li>1ª INVESTIR</li>
+                                        <li>2ª ECONOMIZAR</li>
+                                        <li>3ª +RESULTADOS</li>
+                                    </ul>
+                                   
+                                    <div class="button-group">
+                                        <a class="btn btn-orange btn-lg" href="https://www.ucoopcon.com.br/campanha/cadastro">QUERO PARTICIPAR</a>
+                                         <!-- Banner <a class="btn btn-simple btn-lg with-icon play-video" href="https://youtu.be/wzfYqRVSKBY"><i class="fa fa-play-circle"></i> VÍDEO APRESENTAÇÃO</a>
+                                         -->
+                                         <a class="btn btn-simple btn-lg with-icon" target="_blanck" href="https://www.ucoopcon.com.br/media/uploads/files/conteudos/h80uylc4g3cwk84cw4.pdf"><i class="fa fa-file-pdf-o"></i> LER O PROJETO</a>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 hidden-sm hidden-xs">
+                            <div class="right-part">
+                                <div class="banner-img">
+                                    <img src="https://www.ucoopcon.com.br/assets/camp/images/banner/1.png" alt="Banner Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-item item-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="left-part">
+                                <div class="banner-content">
+                                    <h1 class="layer-1">Retorno do investimento em DESCONTOS!</h1>
+                                    <p class="layer-2">Para ser um(a) COOPERADO(A) você faz um pequenho investimento o qual será retornado em descontos para você e seus dependentes.</p>
+                                    <div class="button-group">
+                                        <a class="btn btn-orange btn-lg" href="https://www.ucoopcon.com.br/campanha/cadastro">QUERO FAZER PARTE</a>
+                                        <a class="btn btn-simple btn-lg with-icon" target="_blanck" href="https://www.ucoopcon.com.br/media/uploads/files/conteudos/h80uylc4g3cwk84cw4.pdf"><i class="fa fa-file-pdf-o"></i> LER O PROJETO</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 hidden-sm hidden-xs">
+                            <div class="right-part">
+                                <div class="banner-img">
+                                    <img src="https://www.ucoopcon.com.br/assets/camp/images/banner/2.png" alt="Banner Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-item item-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="left-part">
+                                <div class="banner-content">
+                                    <h1 class="layer-1">PARTICIPAÇÃO NAS SOBRAS</h1>
+                                    <p class="layer-2">Ao final de cada exercício/ano será feito um balanço onde você terá direito a um ¹CRÉDITO baseado na sua quantidade de cota(s).</p>
+                                    <div class="button-group">
+                                        <a class="btn btn-orange btn-lg" href="https://www.ucoopcon.com.br/campanha/cadastro">QUERO FAZER PARTE</a>
+                                        <a class="btn btn-simple btn-lg with-icon" target="_blanck" href="https://www.ucoopcon.com.br/media/uploads/files/conteudos/h80uylc4g3cwk84cw4.pdf"><i class="fa fa-file-pdf-o"></i> LER O PROJETO</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 hidden-sm hidden-xs">
+                            <div class="right-part">
+                                <div class="banner-img">
+                                    <img src="https://www.ucoopcon.com.br/assets/camp/images/banner/3.png" alt="Banner Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Banner End -->
+
+<div id="service-area" class="section section-padding service-area gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="section-header text-center">
+                        <h2 class="section-title">Porque se tornar um COOPERADO</h2>
+                        <p class="section-subtext">Ao se tornar um COOPERADO você terá uma série de benefícios. Destacamos alguns deles abaixo:</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="services">
+                    <div class="col-md-4 col-xs-6">
+                        <div class="service">
+                            <div class="service-icon">
+                                <img src="https://www.ucoopcon.com.br/assets/camp/images/service/1.png" alt="Service Icon">
+                            </div>
+                            <div class="service-content">
+                                <h5 class="service-title">Descontos no Consumo</h5>
+                                <p>Adquirir produtos e serviços com desconto de 2% a 50% em suas compras na UCOOPCON;</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="service">
+                            <div class="service-icon">
+                                <img src="https://www.ucoopcon.com.br/assets/camp/images/service/2.png" alt="Service Icon">
+                            </div>
+                            <div class="service-content">
+                                <h5 class="service-title">Descontos em Parceiros</h5>
+                                <p>Desconto especial exclusivo em dezenas de empresas parceiras conveniadas, que vai de 5% a 40%;</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="service">
+                            <div class="service-icon">
+                                <img src="https://www.ucoopcon.com.br/assets/camp/images/service/3.png" alt="Service Icon">
+                            </div>
+                            <div class="service-content">
+                                <h5 class="service-title">Participação nas Sobras</h5>
+                                <p>Participação na divisão das sobras no final do exercício anual da UCOOPCON;</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="service">
+                            <div class="service-icon">
+                                <img src="https://www.ucoopcon.com.br/assets/camp/images/service/4.png" alt="Service Icon">
+                            </div>
+                            <div class="service-content">
+                                <h5 class="service-title">Lazer e entretenimento</h5>
+                                <p>Participação nos eventos culturais, de lazer e entretenimento, promovidos pela UCOOPCON, com descontos especiais;</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="service">
+                            <div class="service-icon">
+                                <img src="https://www.ucoopcon.com.br/assets/camp/images/service/5.png" alt="Service Icon">
+                            </div>
+                            <div class="service-content">
+                                <h5 class="service-title">Plano de Saúde</h5>
+                                <p>Poder participar futuramente de um dos melhores e mais econômico convenio/plano de saúde do Brasil.</p>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="about-us-area" class="section section-padding about-us-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 sm-bottom-30">
+                    <div class="about-us-content">
+                        <h2>Entenda o cooperativismo</h2>
+                        <p>Mais que um modelo de negócios, o cooperativismo é uma filosofia de vida que busca transformar o mundo em um lugar mais justo, feliz, equilibrado e com melhores oportunidades para todos. Um caminho que mostra que é possível unir desenvolvimento econômico e desenvolvimento social, produtividade e sustentabilidade, o individual e o coletivo.</p>
+                        <p>Tudo começa quando pessoas se juntam em torno de um mesmo objetivo, em uma organização onde todos são donos do próprio negócio. E continua com um ciclo que traz ganhos para as pessoas, para o país e para o planeta. Conheça um pouco mais sobre o cooperativismo, seus valores e seu impacto.</p>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="card card-orange card-video text-center">
+                        <div class="card-content">
+                            <h5>Projeto Social Pró-economia</h5>
+                         <!--  <a class="btn btn-white btn-just-icon btn-round play-video" href="https://youtu.be/wzfYqRVSKBY">
+                                <i class="material-icons">play_arrow</i> 
+                            </a> -->
+                            <iframe width="450" height="235" src="https://www.youtube.com/embed/LAhIFiPDcAo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>  
+                    <div class="card card-half card-default card-case text-center">
+                        <div class="card-content">
+                            <h5>DESAFIO 60 600</h5>
+                            <a class="btn btn-white btn-just-icon btn-round" target="_blanck" href="https://www.ucoopcon.com.br/media/uploads/files/conteudos/2c9v8emkvny8kkwgso.pdf">
+                                <i class="material-icons">keyboard_arrow_right</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card card-half card-green card-quote text-center">
+                        <div class="card-content">
+                            <h5>QUERO PARTICIPAR</h5>
+                            <a class="btn btn-white btn-just-icon btn-round" href="https://www.ucoopcon.com.br/campanha/cadastro">
+                               <i class="material-icons">group_add</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="working-process-area" class="section section-padding working-processa-area gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="section-header section-header-left">
+                        <h2 class="section-title">Como INVESTIR/COOPERAR</h2>
+                        <p class="section-subtext">Veja como é simples para se tornar um INVESTIDOR/COOPERADO da UCOOPCON.</p>
+                        <a class="btn btn-primary" href="https://www.ucoopcon.com.br/campanha/cadastro">QUERO PARTICIPAR</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-lg-offset-1">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <div class="process-item">
+                                <div class="process-img">
+                                    <img class="img-responsive" src="https://www.ucoopcon.com.br/assets/camp/images/process/1.png" alt="Process Image">
+                                </div>
+                                <h5 class="process-title">Preencher o formulário</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="process-item">
+                                <div class="process-img">
+                                    <img class="img-responsive" src="https://www.ucoopcon.com.br/assets/camp/images/process/2.png" alt="Process Image">
+                                </div>
+                                <h5 class="process-title">Imprimir e assinar</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="process-item">
+                                <div class="process-img">
+                                    <img class="img-responsive" src="https://www.ucoopcon.com.br/assets/camp/images/process/3.png" alt="Process Image">
+                                </div>
+                                <h5 class="process-title">Fazer o pagamento da(s) cota(s)</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="process-item">
+                                <div class="process-img">
+                                    <img class="img-responsive" src="https://www.ucoopcon.com.br/assets/camp/images/process/4.png" alt="Process Image">
+                                </div>
+                                <h5 class="process-title">Comprar a preço de custo</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Call to action / 1 -->
+    <div id="call-to-action-1" class="call-to-action call-to-action-1 theme-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="cta-content">
+                        <h2 class="cta-title">Acesse o Projeto Social Pró-Economina na íntegra.</h2>
+                        <a class="btn btn-orange" href="https://www.ucoopcon.com.br/media/uploads/files/conteudos/h80uylc4g3cwk84cw4.pdf" target="_blanck">LER O PROJETO</a>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-2 hidden-sm hidden-xs">
+                    <div class="cta-mock">
+                        <img src="https://www.ucoopcon.com.br/assets/camp/images/mock/cta-1.png" alt="Call to action image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Call to action / 1 end -->
+
+<!-- News and blog -->
+    <div id="blog-area" class="section section-padding blog-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="section-header text-center">
+                        <h2 class="section-title">Notícias do cooperativismo</h2>
+                        <p class="section-subtext">Selecionamos algumas notícias sobre o COOPERATIVISMO no brasil para que você conheça um pouco mais sobre este tipo de negócio.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="posts">
+                    <div class="col-md-4 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-12">
+                        <article class="card post">
+                            <div class="card-image post-thumb">
+                                <img src="https://www.ucoopcon.com.br/assets/camp/images/blog/1.png" alt="...">
+                                <div class="sharing">
+                                    <a href="http://www.sebrae.com.br/sites/PortalSebrae/ufs/ap/artigos/o-que-e-uma-cooperativa,109c5e130530d410VgnVCM2000003c74010aRCRD" target="_blanck" class="btn btn-share btn-round btn-primary btn-just-icon">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <div class="card-content post-body">
+                                <h3 class="post-title"><a target="_blanck" href="http://www.sebrae.com.br/sites/PortalSebrae/ufs/ap/artigos/o-que-e-uma-cooperativa,109c5e130530d410VgnVCM2000003c74010aRCRD">O que é uma cooperativa</a></h3>
+                                <p class="post-excerpt">Cooperativa é uma associação autônoma de pessoas que se unem, voluntariamente, para satisfazer aspirações e necessidades econômicas... </p>
+                                <p class="post-metas">
+                                    <span class="post-meta author-meta">Por: <b itemprop="author">Sebrae Amapá</b></span> |
+                                    <span class="post-meta date-meta">03/08/2017</span>
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-4 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-12">
+                        <article class="card post">
+                            <div class="card-image post-thumb">
+                                <img src="https://www.ucoopcon.com.br/assets/camp/images/blog/2.png" alt="...">
+                                <div class="sharing">
+                                    <a href="http://www.ocb.org.br/o-que-e-cooperativismo" target="_blanck" class="btn btn-share btn-round btn-primary btn-just-icon">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-content post-body">
+                                <h3 class="post-title"><a target="_blanck" href="http://www.ocb.org.br/o-que-e-cooperativismo">O que é Cooperativismo</a></h3>
+                                <p class="post-excerpt">Mais que um modelo de negócios, o cooperativismo é uma filosofia de vida que busca transformar o mundo em um lugar mais justo, feliz...</p>
+                                <p class="post-metas">
+                                    <span class="post-meta author-meta">Por: <b itemprop="author">Sistema OCB</b></span> |
+                                    
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-4 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-12">
+                        <article class="card post">
+                            <div class="card-image post-thumb">
+                                <img src="https://www.ucoopcon.com.br/assets/camp/images/blog/3.png" alt="...">
+                                <div class="sharing">
+                                    <a href="http://www.ocb.org.br/como-funciona-uma-cooperativa" target="_blanck" class="btn btn-share btn-round btn-primary btn-just-icon">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-content post-body">
+                                <h3 class="post-title"><a target="_blanck" href="http://www.ocb.org.br/como-funciona-uma-cooperativa">Como Funciona uma Cooperativa</a></h3>
+                                <p class="post-excerpt">As principais decisões de uma cooperativa, como a eleição da diretoria, a escolha dos conselheiros e a definição da política...</p>
+                                <p class="post-metas">
+                                    <span class="post-meta author-meta">Por: <b itemprop="author">Sistema OCB</b></span> |
+                                    
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- News and blog end -->
+ 
+
+
+
+
+
+<!-- Hero Section com fundo verde escuro
+<section class="hero-section bg-light">
+    <div class="container" "bg-light-green" style="color: #000;">
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <h1 class="display-4 fw-bold mb-4">UCOOPCON</h1>
                 <p class="lead mb-4">Cooperativa de desenvolvimento e crescimento mútuo. Juntos construímos um futuro próspero e sustentável para todos os nossos cooperados.</p>
                 <div class="d-flex gap-3">
                     <a href="{% url 'core:sobre' %}" class="btn btn-light btn-lg">Saiba Mais</a>
-                    <!-- ...código existente... -->
-                    <a href="{% url 'members:pessoa_create' %}" class="btn btn-light btn-lg">Cadastre-se</a>
-                    <!-- ...código existente... -->
-                    <a href="{% url 'core:contato' %}" class="btn btn-light btn-lg">Contato</a>
+                    <!-- ...código existente...                     <a href="{% url 'members:pessoa_create' %}" class="btn btn-light btn-lg">Cadastre-se</a>
+                    <!-- ...código existente...                     <a href="{% url 'core:contato' %}" class="btn btn-light btn-lg">Contato</a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -30,7 +406,7 @@
     </div>
 </section>
 
-<!-- Estatísticas com fundo verde claro -->
+<!-- Estatísticas com fundo verde claro
 <section class="py-5 bg-light-green">
     <div class="container">
         <div class="row">
@@ -66,7 +442,7 @@
     </div>
 </section>
 
-<!-- Notícias em Destaque com fundo verde escuro -->
+<!-- Notícias em Destaque com fundo verde escuro 
 {% if noticias_destaque %}
 <section class="py-5 bg-dark-green">
     <div class="container">
@@ -107,7 +483,7 @@
 </section>
 {% endif %}
 
-<!-- Próximos Eventos com fundo verde claro -->
+<!-- Próximos Eventos com fundo verde claro
 {% if proximos_eventos %}
 <section class="py-5 bg-light-green">
     <div class="container">
@@ -149,7 +525,7 @@
 </section>
 {% endif %}
 
-<!-- Seção de Serviços com fundo verde escuro -->
+<!-- Seção de Serviços com fundo verde escuro -
 <section class="py-5 bg-dark-green">
     <div class="container">
         <div class="row mb-5">
@@ -193,5 +569,5 @@
     </div>
 </section>
 </div>
-
+-->
 {% endblock %}

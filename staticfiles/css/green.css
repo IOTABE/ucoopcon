@@ -1,0 +1,197 @@
+/*---------------------------------------
+Default Color
+---------------------------------------*/
+/*** Color ***/
+a,
+a:hover,
+a:focus,
+.btn.btn-simple,
+.navbar .navbar-nav > li > a.btn.btn-primary.btn-simple,
+.form-group.is-focused label,
+.form-group.is-focused label.control-label,
+.icon.icon-primary,
+.text-primary,
+.card-default .btn,
+.card-default .btn:hover,
+.case-title:hover,
+.testimonial-item blockquote:before,
+.footer-upper .contact-icon,
+.payments a:hover,
+.panel.panel-primary > .panel-heading > .panel-title > a:after,
+.sidebar .widget ul > li > a:hover,
+.sidebar .recent-title a:hover,
+.blog-single .post-metas .tags-meta a:hover,
+.commingsoon-wrap.style-2 p,
+.commingsoon-wrap.style-2 h2,
+.commingsoon-wrap.style-2 .countdown-time,
+.commingsoon-wrap.style-2 .subscribe-form [type=submit],
+.service-single-wrap .quote-form [type=submit] {
+  color: #167769;
+}
+
+/*** Backgorund color ***/
+.btn.btn-primary,
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active,
+.btn.btn-primary:active:focus,
+.btn.btn-primary:active:hover,
+.btn.btn-primary.active:focus,
+.btn.btn-primary.active:hover,
+.open > .btn.btn-primary.dropdown-toggle,
+.open > .btn.btn-primary.dropdown-toggle:focus,
+.open > .btn.btn-primary.dropdown-toggle:hover,
+.navbar .navbar-nav > li > a.btn.btn-primary,
+.navbar .navbar-nav > li > a.btn.btn-primary:hover,
+.navbar .navbar-nav > li > a.btn.btn-primary:focus,
+.navbar .navbar-nav > li > a.btn.btn-primary:active,
+.navbar .navbar-nav > li > a.btn.btn-primary.active,
+.navbar .navbar-nav > li > a.btn.btn-primary:active:focus,
+.navbar .navbar-nav > li > a.btn.btn-primary:active:hover,
+.navbar .navbar-nav > li > a.btn.btn-primary.active:focus,
+.navbar .navbar-nav > li > a.btn.btn-primary.active:hover,
+.open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle,
+.open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle:focus,
+.open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle:hover,
+.btn-group.open > .dropdown-toggle.btn.btn-primary,
+.btn-group-vertical.open > .dropdown-toggle.btn.btn-primary,
+.checkbox input[type=checkbox]:checked + .checkbox-material .check,
+.togglebutton label input[type=checkbox]:checked + .toggle:after,
+.radio label .check,
+.radio input[type=radio]:checked ~ .check,
+.radio input[type=radio]:checked ~ .circle,
+.label.label-primary,
+.form-group.is-focused .form-control .material-input:after,
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover,
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover,
+.navbar,
+.navbar.navbar-default,
+.navbar .dropdown-menu li > a:hover,
+.navbar .dropdown-menu li > a:focus,
+.navbar.navbar-default .dropdown-menu li > a:hover,
+.navbar.navbar-default .dropdown-menu li > a:focus,
+.navbar .dropdown-menu .active > a,
+.navbar.navbar-default .dropdown-menu .active > a,
+.navbar.navbar-primary,
+.navbar.navbar-primary .dropdown-menu li > a:hover,
+.navbar.navbar-primary .dropdown-menu li > a:focus,
+.navbar.navbar-primary .dropdown-menu .active > a,
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus,
+.dropdown-menu li a:active,
+.progress .progress-bar,
+.progress .progress-bar.progress-bar-default,
+.progress .progress-bar.progress-bar-primary,
+.nav-tabs,
+.panel.panel-primary > .panel-heading,
+.slider.noUi-connect,
+.datepicker td.active p,
+.datepicker td.active:hover p,
+.datepicker td.primary p,
+.datepicker td.primary:hover p,
+.datepicker span.active,
+.datepicker span.active:focus,
+.datepicker span.active:hover,
+.datepicker span.active:active,
+.datepicker span.primary,
+.datepicker span.primary:hover,
+.main-navbar.affix,
+.theme-bg,
+.card.card-default,
+.card.card-primary,
+.pricing-table.pricing-default,
+.social a,
+.style-2 .testimonial-item blockquote,
+.btn-filter.active,
+.btn-filter.active:focus,
+.panel.panel-primary > .panel-heading > .panel-title > a[aria-expanded=true],
+.pagination .page-numbers.current,
+.sidebar .widget-title:after,
+.sidebar .tags a:hover,
+.post-footer .post-tags a,
+.member:hover,
+.intro:hover,
+.header-search,
+.navbar .dropdown-menu li > a:before,
+.anim,
+.single-service .single-service-tab .nav-tabs > li.active > a,
+.service-nav .active .btn-service,
+.service-single-wrap .widget,
+.banner {
+  background-color: #167769;
+}
+
+/*** Box Shadow ***/
+.btn.btn-primary,
+.navbar .navbar-nav > li > a.btn.btn-primary,
+.social a {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(231, 76, 60, 0.14), 0 3px 1px -2px rgba(231, 76, 60, 0.2), 0 1px 5px 0 rgba(231, 76, 60, 0.12);
+          box-shadow: 0 2px 2px 0 rgba(231, 76, 60, 0.14), 0 3px 1px -2px rgba(231, 76, 60, 0.2), 0 1px 5px 0 rgba(231, 76, 60, 0.12);
+}
+
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary:hover,
+.navbar .navbar-nav > li > a.btn.btn-primary:focus,
+.navbar .navbar-nav > li > a.btn.btn-primary:active,
+.navbar .navbar-nav > li > a.btn.btn-primary:hover,
+.pricing-table.pricing-default:hover,
+.social a:hover {
+  -webkit-box-shadow: 0 14px 26px -12px rgba(231, 76, 60, 0.42), 0 4px 23px 0px rgba(231, 76, 60, 0.12), 0 8px 10px -5px rgba(231, 76, 60, 0.2);
+          box-shadow: 0 14px 26px -12px rgba(231, 76, 60, 0.42), 0 4px 23px 0px rgba(231, 76, 60, 0.12), 0 8px 10px -5px rgba(231, 76, 60, 0.2);
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+  -webkit-box-shadow: 0 4px 5px 0 rgba(231, 76, 60, 0.14), 0 1px 10px 0 rgba(231, 76, 60, 0.12), 0 2px 4px -1px rgba(231, 76, 60, 0.2);
+          box-shadow: 0 4px 5px 0 rgba(231, 76, 60, 0.14), 0 1px 10px 0 rgba(231, 76, 60, 0.12), 0 2px 4px -1px rgba(231, 76, 60, 0.2);
+}
+
+/*** Gradient ***/
+.form-control,
+.form-group .form-control,
+.form-group.is-focused .form-control {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#167769), to(#167769)), -webkit-gradient(linear, left top, left bottom, from(#D2D2D2), to(#D2D2D2));
+  background-image: linear-gradient(#167769, #167769), linear-gradient(#D2D2D2, #D2D2D2);
+}
+
+/*** Border ***/
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover,
+.slider .noUi-handle,
+.sidebar .search-form.primary-search [type=search],
+.sidebar .tags a:hover,
+.blog-single .post-entry blockquote {
+  border-color: #167769;
+}
+
+/*** Transparent BG ***/
+.overlay,
+.case .case-hover {
+  background-color: #167769e6;
+}
+
+@media (max-width: 768px) {
+  .navbar.navbar-transparent {
+    background-color: #167769 !important;
+  }
+}
+.banner-registration .banner-registration-title {
+  background-color: #4285f4 !important;
+}
